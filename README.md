@@ -1,16 +1,79 @@
-# React + Vite
+# 🔗 URL Shortener — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web para encurtamento de URLs, construída com **React**, **Vite** e **TailwindCSS v4**. Consome uma API REST para gerar links curtos a partir de URLs longas.
 
-Currently, two official plugins are available:
+## ✨ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Encurta qualquer URL via formulário simples
+- Exibe o link encurtado com acesso direto (clicável)
+- Feedback visual de sucesso após geração do link
 
-## React Compiler
+## 🛠️ Tecnologias
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Tecnologia | Versão |
+|---|---|
+| React | 19 |
+| Vite | 7 |
+| TailwindCSS | 4 |
+| ESLint | 9 |
 
-## Expanding the ESLint configuration
+## 📋 Pré-requisitos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Node.js** >= 18
+- Backend da API rodando em `http://localhost:8080` (veja a seção de backend)
+
+## 🚀 Como rodar localmente
+
+```bash
+# Clone o repositório
+git clone https://github.com/GabrielChagas14/url-shortener-front.git
+cd url-shortener-front
+
+# Instale as dependências
+npm install
+
+# Inicie o servidor de desenvolvimento
+npm run dev
+```
+
+A aplicação estará disponível em `http://localhost:5173`.
+
+## 🔌 Integração com o Backend
+
+O frontend faz requisições para o endpoint abaixo:
+
+```
+POST http://localhost:8080/api/url/create
+Content-Type: application/json
+
+{ "originalUrl": "https://exemplo.com/url-muito-longa" }
+```
+
+**Resposta esperada:**
+```json
+{
+  "shortUrl": "http://localhost:8080/abc123"
+}
+```
+
+> Certifique-se de que o backend esteja rodando antes de utilizar a aplicação.
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── components/
+│   ├── input.jsx     # Componente de campo de entrada
+│   └── button.jsx    # Componente de botão de envio
+├── App.jsx           # Componente principal com lógica de encurtamento
+└── main.jsx          # Ponto de entrada da aplicação
+```
+
+## 📜 Scripts disponíveis
+
+| Comando | Descrição |
+|---|---|
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera o build de produção |
+| `npm run preview` | Visualiza o build de produção localmente |
+| `npm run lint` | Executa o ESLint no projeto |
